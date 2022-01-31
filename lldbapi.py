@@ -189,7 +189,7 @@ class lldbapi:
         for idx in range(v_list.GetSize()):
             variable = v_list.GetValueAtIndex(idx)
             if variable.GetID() not in f_dict:
-                f_dict[variable.GetID()] = dict()
+                f_dict[variable.GetID()] = {'value':'None'}
             self.StoreVariableInfo(variable, 0,f_dict)
         if frame.GetLineEntry().IsValid():
             f_dict['line'] = frame.GetLineEntry().GetLine()
@@ -200,7 +200,8 @@ class lldbapi:
             print("variable is not valid")
             return
         v_dict =  f_dict[variable.GetID()]
-
+        v_dict["type"] = variable.GetTypeName()
+        v_dict["name"] = variable.GetName()
         if 'wp_id' not in v_dict:
             v_dict['wp_id'] = self.setWP(variable)
         if v_dict['wp_id'] in self.stoplist:

@@ -1,21 +1,15 @@
 int twoBai(int number){
-    return number*2;
+    number = number*2;
+    return number;
 }
-
 int main()
 {
-    int a = 30;
-    int b = 40;
-
-
-
-    double c;
-    
-    
-    b = twoBai(b);
-
-
-
-    c = a+b;
+  int b = 40,i;
+  double c;
+  for(i=0;i<5;i++)
+    {
+      b = twoBai(b);
+    }
+    c = 10+b;
     return 0;
 }
